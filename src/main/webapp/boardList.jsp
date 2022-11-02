@@ -46,7 +46,9 @@
                     PreparedStatement pstmt = null;
                     ResultSet rs = null;
                     try {
-                        String sql = "SELECT seq, title, user_id, create_date, cnt FROM board WHERE deleted_yn = 'N'";
+                        String sql = "SELECT seq, title, user_id, create_date, cnt FROM board ";
+                                sql += "WHERE deleted_yn = 'N' ORDER BY seq DESC";
+
                         pstmt = conn.prepareStatement(sql);
                         rs = pstmt.executeQuery();
                         while (rs.next()) {
@@ -58,7 +60,7 @@
                 %>
                 <tr>
                     <td><%=seq%></td>
-                    <td><%=title%></td>
+                    <td><a href="boardDetail2.jsp?seq=<%=seq%>"><%=title%></a></td>
                     <td><%=userId%></td>
                     <td><%=createDt%></td>
                     <td><%=cnt%></td>
